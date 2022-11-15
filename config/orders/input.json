@@ -1,0 +1,19 @@
+{
+  "tables":
+    [
+      {
+      "tableName": "orders",
+      "schema":
+        [
+          {
+            "name": "id",
+            "type": "int64"
+          },
+          {
+            "name": "customer_id",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+}

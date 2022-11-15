@@ -6,9 +6,19 @@ import (
 )
 
 func main() {
-	jsn := `{"tableName": "orders", "schema": [{"name": "id", "type": "int64"},{"name": "customer_id", "type": "string"}]}`
+	jsn := `{"tables":[{"tableName": "orders", "schema": [{"name": "id", "type": "int64"},{"name": "customer_id", "type": "string"}]}]}`
+	//jsnByte, err := os.ReadFile("test.json")
+	//jsn = string(jsnByte)
+	dbModels := repository.NewDatabaseModels(jsn)
+	relationalModel, err := dbModels.GetRawRelationalModels()
+	if err != nil {
+		fmt.Printf("error: %v", err)
+	}
+	fmt.Println(relationalModel)
+	//configPath := library.GetConfigPath("orders")
+	//fmt.Println(configPath.GetInputPath())
 	relational := repository.NewRelationalModel()
-	err := relational.Unmarshal(jsn)
+	err = relational.Unmarshal(relationalModel)
 	if err != nil {
 		fmt.Println(err.Error())
 	}

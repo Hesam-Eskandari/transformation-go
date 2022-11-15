@@ -7,9 +7,13 @@ type column struct {
 	ColumnType string `json:"type"`
 }
 
-type relationalModel struct {
+type table struct {
 	Schema    []column `json:"schema"`
 	TableName string   `json:"tableName"`
+}
+
+type relationalModel struct {
+	Tables []table `json:"tables"`
 }
 
 func NewRelationalModel() RelationalModel {
